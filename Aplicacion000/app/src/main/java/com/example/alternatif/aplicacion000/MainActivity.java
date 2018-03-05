@@ -1,8 +1,13 @@
 package com.example.alternatif.aplicacion000;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +18,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toast.makeText(this, "OnCreate", Toast.LENGTH_LONG).show();
+
+        SuperActivityToast.create(this, new Style(), Style.TYPE_BUTTON)
+                .setButtonText("UNDO")
+                //.setButtonIconResource(R.drawable.ic_undo)
+                .setOnButtonClickListener("good_tag_name", null, null)
+                .setProgressBarColor(Color.WHITE)
+                .setText("Hello world!")
+                .setDuration(Style.DURATION_LONG)
+                .setFrame(Style.FRAME_LOLLIPOP)
+                .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_PURPLE))
+                .setAnimations(Style.ANIMATIONS_POP).show();
 
     }
 
