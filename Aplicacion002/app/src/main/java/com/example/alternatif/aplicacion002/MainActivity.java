@@ -40,6 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-
+        Toast.makeText(MainActivity.this,"Button clicked from the code!",Toast.LENGTH_LONG).show();
     }
 }
