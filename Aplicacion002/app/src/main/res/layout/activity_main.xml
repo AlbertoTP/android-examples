@@ -10,24 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/Hola Mundo!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="38dp"
-            android:text="TextView" />
 
         <Button
             android:id="@+id/buttonMain"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/Hola Mundo!"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="Button"
-            />
-            <!-- android:onClick="miMetodo" -->
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:text="Go Next"
+            android:textColor="#FFF" />
+        <!-- android:onClick="miMetodo" -->
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
