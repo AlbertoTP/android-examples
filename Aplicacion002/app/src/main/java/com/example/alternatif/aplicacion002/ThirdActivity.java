@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +39,38 @@ public class ThirdActivity extends AppCompatActivity {
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
                     //comprobar version actual de android
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
+                        //Comprobar si acepto, denego, o no se ha preguntado
+                        if(checkPermission(Manifest.permission.CALL_PHONE)){ //acepto
+                            Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ phoneNumber));
+                            if (ActivityCompat.checkSelfPermission(ThirdActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            startActivity(intentCall);
+                        }else { //denego o no ha preguntado
+                            if (!shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)){
+                                //No se ha preguntado aun
+                                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
+                            }
+                            else{
+                                //denego
+                                Toast.makeText(ThirdActivity.this,"Please enable the request permission",Toast.LENGTH_LONG).show();
+                                //mandar al usuario a settings
+                                Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                i.addCategory(Intent.CATEGORY_DEFAULT);
+                                i.setData(Uri.parse("package:"+getPackageName()));
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                startActivity(i);
+                            }
+                        }
                     } else {
                         olderVersions(phoneNumber);
                     }
@@ -99,6 +131,7 @@ public class ThirdActivity extends AppCompatActivity {
 
     }
 
+    //comprueba que el usuario acepte el permiso
     private boolean checkPermission(String permmission){
         int result = this.checkCallingOrSelfPermission(permmission);
         return result == PackageManager.PERMISSION_GRANTED;
