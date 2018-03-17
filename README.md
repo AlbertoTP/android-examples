@@ -11,3 +11,4 @@ Aplicaciones desarrolladas durante el curso
   * Intent explicito (pasar datos de un activity a otro)
   * Intent implicito (Que app abrira la acción, checkpermission, flag, abre configuracion) (Call)
   * Intent implicito (WEB)
+  * Mas Intent implicitos (Dial, Contacts, mailto)

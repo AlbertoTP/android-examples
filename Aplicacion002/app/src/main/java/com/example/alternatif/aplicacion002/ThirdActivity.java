@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class ThirdActivity extends AppCompatActivity {
 
     private EditText editTextPhone, editTextWeb;
     private ImageButton imageButtonPhone, imageButtonWeb, imageButtonCamera;
+    private Button buttonFourAct;
     private final int PHONE_CALL_CODE = 100;
 
     @Override
@@ -31,6 +33,7 @@ public class ThirdActivity extends AppCompatActivity {
         imageButtonPhone = findViewById(R.id.imageButtonPhone);
         imageButtonWeb = findViewById(R.id.imageButtonWeb);
         imageButtonCamera = findViewById(R.id.imageButtonCamera);
+        buttonFourAct = findViewById(R.id.buttonFourActivity);
 
         //Boton Llamada (CALL)
         imageButtonPhone.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +110,16 @@ public class ThirdActivity extends AppCompatActivity {
                     Toast.makeText(ThirdActivity.this,"Empty url",Toast.LENGTH_LONG);
                 }
 
+            }
+        });
+
+        //Boton four activity
+        buttonFourAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ThirdActivity.this, "Go to 4 act",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ThirdActivity.this, FourActivity.class);
+                startActivity(intent);
             }
         });
     }
