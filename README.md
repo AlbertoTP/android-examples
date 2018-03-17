@@ -10,3 +10,4 @@ Aplicaciones desarrolladas durante el curso
   * Añadir funcionalidad a elementos de la UI (User Interface)
   * Intent explicito (pasar datos de un activity a otro)
   * Intent implicito (Que app abrira la acción, checkpermission, flag, abre configuracion) (Call)
+  * Intent implicito (WEB)

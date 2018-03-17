@@ -32,13 +32,14 @@ public class ThirdActivity extends AppCompatActivity {
         imageButtonWeb = findViewById(R.id.imageButtonWeb);
         imageButtonCamera = findViewById(R.id.imageButtonCamera);
 
+        //Boton Llamada (CALL)
         imageButtonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phoneNumber = editTextPhone.getText().toString();
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
                     //comprobar version actual de android
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //Versiones recientes
                         //Comprobar si acepto, denego, o no se ha preguntado
                         if(checkPermission(Manifest.permission.CALL_PHONE)){ //acepto
                             Intent intentCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ phoneNumber));
@@ -87,6 +88,25 @@ public class ThirdActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(ThirdActivity.this, "You decline the access", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        //Boton WEB
+        imageButtonWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = editTextWeb.getText().toString();
+                if (url != null && !url.isEmpty()){
+                    Intent intentWeb = new Intent();
+                    intentWeb.setAction(Intent.ACTION_VIEW);
+                    intentWeb.setData(Uri.parse("http://"+url));
+                    startActivity(intentWeb);
+                    Toast.makeText(ThirdActivity.this,"Open browser",Toast.LENGTH_LONG);
+                }
+                else{
+                    Toast.makeText(ThirdActivity.this,"Empty url",Toast.LENGTH_LONG);
+                }
+
             }
         });
     }

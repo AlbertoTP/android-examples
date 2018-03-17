@@ -17,6 +17,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text=" "
+            android:textAlignment="center"
+            android:textSize="30dp"
             tools:layout_editor_absoluteX="163dp"
             tools:layout_editor_absoluteY="246dp" />
 
