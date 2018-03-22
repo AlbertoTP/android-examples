@@ -12,3 +12,4 @@ Aplicaciones desarrolladas durante el curso
   * Intent implicito (Que app abrira la acción, checkpermission, flag, abre configuracion) (Call)
   * Intent implicito (WEB)
   * Mas Intent implicitos (Dial, Contacts, mailto)
+  * Intent implicito mail (predefinido y forzar pregunta)

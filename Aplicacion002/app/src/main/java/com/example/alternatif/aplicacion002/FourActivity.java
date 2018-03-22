@@ -53,6 +53,9 @@ public class FourActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email="alternatif-3@hotmail.com";
                 Intent intentFastMail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+email));
+                intentFastMail.putExtra(Intent.EXTRA_SUBJECT, "This is a Tittle");
+                intentFastMail.putExtra(Intent.EXTRA_TEXT,"This is a text in the mail");
+                intentFastMail.putExtra(Intent.EXTRA_EMAIL, new String[] {"example@mail.com","alt3rnatif3@gmail.com"});
                 startActivity(intentFastMail);
             }
         });
@@ -62,12 +65,17 @@ public class FourActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String mail = editTextMail.getText().toString();
                 if (mail!=null && !mail.isEmpty()){
-                    Intent intentMail = new Intent(Intent.ACTION_VIEW, Uri.parse(mail));
+                    Intent intentMail = new Intent(Intent.ACTION_SEND, Uri.parse(mail)); //mail el cual envia
+                    //intentMail.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
                     intentMail.setType("plain/text");
                     intentMail.putExtra(Intent.EXTRA_SUBJECT, "This is a Tittle");
-                    intentMail.putExtra(Intent.EXTRA_TEXT,"Tihs is a text in the mail");
-                    intentMail.putExtra(Intent.EXTRA_EMAIL, new String[] {"example@mail.com","example2@mail.com"});
-                    Toast.makeText(FourActivity.this,"Mail sent",Toast.LENGTH_LONG).show();
+                    intentMail.putExtra(Intent.EXTRA_TEXT,"This is a text in the mail");
+                    intentMail.putExtra(Intent.EXTRA_EMAIL, new String[] {"example@mail.com","alt3rnatif3@gmail.com"});
+                    Toast.makeText(FourActivity.this,"Open Mail ...",Toast.LENGTH_LONG).show();
+                    //abre la app con intent implicito
+                    //startActivity(intentMail);
+                    //Fuerza que pregunte que app abrira la app
+                    startActivity(Intent.createChooser(intentMail,"Choose mail client"));
                 }
                 else{
                     Toast.makeText(FourActivity.this,"Insert a Mail",Toast.LENGTH_LONG).show();
